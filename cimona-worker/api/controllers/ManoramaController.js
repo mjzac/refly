@@ -9,18 +9,9 @@ module.exports = {
   getSections: function getSections(req, res) {
     var sectionCode = req.param('section') || 'en';
     switch (sectionCode) {
-      case 'en': {
-        sails.services.manoramaapi.findEnglishSections({}, function callback(error, response) {
-          if (error) {
-            return res.json(401, { error: error });
-          } else {
-            return res.json(200, { response: response });
-          }
-        });
-        break;
-      }
+      case 'en':
       case 'ml': {
-        sails.services.manoramaapi.findMalayalamSections({}, function callback(error, response) {
+        sails.services.manoramaapi.findSections(sectionCode, function callback(error, response) {
           if (error) {
             return res.json(401, { error: error });
           } else {

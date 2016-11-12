@@ -2,6 +2,17 @@ var request = require('request');
 var APIKEY = process.env.MANORAMA_API_KEY;
 var API_HOST = process.env.MANORAMA_HOST;
 module.exports = {
+
+  findSections: function findSections(sectionType, callback) {
+    switch (sectionType) {
+      case 'en': {
+        return sails.services.manoramaapi.findEnglishSections({}, callback);
+      }
+      case 'ml': {
+        return sails.services.manoramaapi.findMalayalamSections({}, callback);
+      }
+    }
+  },
   findEnglishSections: function findEnglishSections(params, callback) {
     params.method = 'get';
     params.endpoint = '/editions/en/sections';
