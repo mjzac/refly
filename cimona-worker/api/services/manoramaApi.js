@@ -30,6 +30,9 @@ module.exports = {
     if (params.page) {
       params.qs = { page: params.page };
     }
+    if (params.size) {
+      params.qs = { size: params.size };
+    }
     return sails.services.manoramaapi.makeAPICall(params, callback);
   },
 

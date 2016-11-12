@@ -31,8 +31,12 @@ module.exports = {
     var sectionCode = req.param('section') || '';
     var params = {};
     var page = req.param('page') || '';
+    var size = req.param('size') || '';
     if (page) {
       params.page = page;
+    }
+    if (page) {
+      params.size = size;
     }
     switch (editionCode) {
       case 'en':
