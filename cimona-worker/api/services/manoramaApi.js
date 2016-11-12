@@ -23,11 +23,43 @@ module.exports = {
     params.endpoint = '/editions/ml/sections';
     return sails.services.manoramaapi.makeAPICall(params, callback);
   },
+
+  findArticles: function findArticles(params, callback) {
+    params.method = 'get';
+    params.endpoint = '/editions/' + params.edition + '/sections/' + params.section + '/articles';
+    if (params.page) {
+      params.qs = { page: params.page };
+    }
+    return sails.services.manoramaapi.makeAPICall(params, callback);
+  },
+
+  findArticleDetails: function findArticleDetails(params, callback) {
+    params.method = 'get';
+    params.endpoint = '/editions/' + params.edition + '/articles/' + params.article;
+    return sails.services.manoramaapi.makeAPICall(params, callback);
+  },
+
+  searchArticles: function searchArticles(params, callback) {
+    params.method = 'get';
+    params.endpoint = '/editions/' + params.edition + '/search';
+    params.qs = {
+      term: params.term,
+      type: params.type
+    };
+    if (params.section) {
+      params.qs.section = params.section;
+    }
+    if (params.page) {
+      params.qs.page = params.page;
+    }
+    return sails.services.manoramaapi.makeAPICall(params, callback);
+  },
   makeAPICall: function makeAPICall(params, callback) {
     var url = API_HOST + params.endpoint;
     var options = {
       url: url,
       method: params.method,
+      qs: params.qs,
       json: true,
       body: params.data,
       headers: {

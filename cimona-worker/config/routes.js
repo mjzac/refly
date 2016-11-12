@@ -36,7 +36,11 @@ module.exports.routes = {
     view: 'homepage'
   },
 
-  'get /sections/:section': 'ManoramaController.getSections'
+  'get /:edition/section': 'ManoramaController.getSections',
+  'get /:edition/:section/articles': 'ManoramaController.getArticles',
+  'get /:edition/articles/:articleID': 'ManoramaController.getArticleDetails',
+  'get /:edition/search/:term':'ManoramaController.search',
+  'get /:edition/search/:term/:type':'ManoramaController.search'
 
   /***************************************************************************
   *                                                                          *
